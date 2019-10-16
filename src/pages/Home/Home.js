@@ -1,18 +1,10 @@
 import React, { useEffect, useState} from 'react';
 import styled from 'styled-components';
 import { PageContainer } from '../../components/page-container'
-import { getWheatherByCity } from '../../services/api'
+import { Card } from '../../components/card'
+import { getCityData  } from '../../services/get-city-data';
 
 const CITIES = ['Dublin', 'São Paulo', 'Gold Coast']
-
-const Card = styled.div`
-  background: #fff;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20px 0;
-`
 
 const CityName = styled.h1`
   font-size: 21px;
@@ -23,15 +15,6 @@ const Degress = styled.span`
 
 export const Home = () => {
   const [cities, setCities] = useState([]);
-
-  const getCityData = async cityName => {
-    const url = getWheatherByCity(cityName);
-    const res = await fetch(url);
-    const json = await res.json();
-    const data = json;
-
-    return data;
-  };
 
   useEffect(() => {
     const getCitiesData = async () => {
